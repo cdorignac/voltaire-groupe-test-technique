@@ -9,4 +9,4 @@ INSERT INTO product (name, category, price, stock) VALUES
 ('Horse Bridle Pro', 'Accessory', 210.00, 8),
 ('Dressage Saddle Elite', 'Saddle', 2000.00, 2),
 ('Rubber Grip Stirrups', 'Stirrups', 95.00, 12),
-('Saddle Cover Waterproof', 'Accessory', 30.00, 30);
+('Saddle Cover Waterproof', 'Accessory', 30.00, 0);
