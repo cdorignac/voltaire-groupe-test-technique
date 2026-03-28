@@ -36,3 +36,14 @@ def create_product(product: ProductCreate, db: Session = Depends(get_db)) -> Pro
     db.commit()
     db.refresh(db_product)
     return ProductSchema.model_validate(db_product)
+
+@app.put("/products/{product_id}", response_model=ProductSchema)
+def update_product(product_id: int, product: ProductCreate, db: Session = Depends(get_db)) -> ProductSchema:
+    db_product = db.query(models.Product).filter(models.Product.id == product_id).first()
+    if db_product is None:
+        raise HTTPException(status_code=404, detail=f"Product with id {product_id} not found")
+    for key, value in product.model_dump().items():
+        setattr(db_product, key, value)
+    db.commit()
+    db.refresh(db_product)
+    return ProductSchema.model_validate(db_product)
