@@ -1,4 +1,4 @@
-FROM postgres:18-alpine
+FROM postgres:17-alpine
 
 # Set environment variables for PostgreSQL configuration
 ENV POSTGRES_USER=${POSTGRES_USER}
