@@ -47,3 +47,12 @@ def update_product(product_id: int, product: ProductCreate, db: Session = Depend
     db.commit()
     db.refresh(db_product)
     return ProductSchema.model_validate(db_product)
+
+@app.delete("/products/{product_id}")
+def delete_product(product_id: int, db: Session = Depends(get_db)) -> dict:
+    db_product = db.query(models.Product).filter(models.Product.id == product_id).first()
+    if db_product is None:
+        raise HTTPException(status_code=404, detail=f"Product with id {product_id} not found")
+    db.delete(db_product)
+    db.commit()
+    return {"detail": f"Product with id {product_id} deleted successfully"}
