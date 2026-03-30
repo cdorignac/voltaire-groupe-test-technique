@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 import { ref, type Ref } from 'vue'
 
 export const useProductStore = defineStore('productStore', () => {
-  const products = ref([])
+  const products = ref<Product[]>([])
   const loading = ref(false)
   const error: Ref<undefined | string> = ref(undefined)
   const success: Ref<undefined | string> = ref(undefined)
@@ -37,6 +37,22 @@ export const useProductStore = defineStore('productStore', () => {
       loading.value = false
     }
   }
+
+  async function deleteProduct(id: number) {
+    try {
+      await api.delete(`/products/${id}`) 
+      products.value = products.value.filter(product => product.id !== id)
+      success.value = `Product deleted successfully`
+      setTimeout(() => {
+        success.value = undefined
+      }, 10000)
+    } catch (err) {
+      error.value = 'Failed to delete product'
+    } finally {
+      loading.value = false
+    } 
+  }
+
   return {
     products,
     loading,
@@ -44,5 +60,6 @@ export const useProductStore = defineStore('productStore', () => {
     success,
     fetchProducts,
     createProduct,
+    deleteProduct
   }
 })
