@@ -28,7 +28,14 @@ const getAllProducts = async () => {
 
 <template>
   <div class="p-4">
-    <h1 class="text-2xl font-bold mb-4">All Products</h1>
+    <v-row class="mb-5" align="center">
+      <v-col cols="12" md="10">
+        <h1 class="text-2xl font-bold">All products</h1>
+      </v-col>
+      <v-col cols="12" md="2" class="d-flex justify-end">
+        <v-btn color="primary" to="/products/new" prepend-icon="mdi-plus">Add product</v-btn>
+      </v-col>
+    </v-row>
     <v-row class="mb-5 mt-12" align="center">
       <v-col cols="12" md="5">
         <v-btn-toggle

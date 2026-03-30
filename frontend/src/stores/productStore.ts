@@ -6,7 +6,8 @@ import { ref, type Ref } from 'vue'
 export const useProductStore = defineStore('productStore', () => {
   const products = ref([])
   const loading = ref(false)
-  const error: Ref<null | string> = ref(null)
+  const error: Ref<undefined | string> = ref(undefined)
+  const success: Ref<undefined | string> = ref(undefined)
 
   async function fetchProducts(inStock: boolean, category?: Category | null) {
     loading.value = true
@@ -22,10 +23,26 @@ export const useProductStore = defineStore('productStore', () => {
     }
   }
 
+  async function createProduct(product: Omit<Product, 'id'>) {
+    try {
+      const response = await api.post('/products', product) 
+      products.value.push(response.data)
+      success.value = `Product ${product.name} created successfully`
+      setTimeout(() => {
+        success.value = undefined
+      }, 10000)
+    } catch (err) {
+      error.value = 'Failed to create product'
+    } finally {
+      loading.value = false
+    }
+  }
   return {
     products,
     loading,
     error,
+    success,
     fetchProducts,
+    createProduct,
   }
 })
