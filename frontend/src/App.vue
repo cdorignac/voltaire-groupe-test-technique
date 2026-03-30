@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import logo from '@/assets/Equistock.png'
+import { useProductStore } from './stores/productStore';
+import { computed } from 'vue';
+
+const productStore = useProductStore()
+
+const hasSuccessMessage = computed(() => !!productStore.success)
+const hasErrorMessage = computed(() => !!productStore.error)
 </script>
 
 <template>
@@ -12,6 +19,22 @@ import logo from '@/assets/Equistock.png'
     </v-app-bar>
     <v-main>
       <v-container>
+        <v-alert
+          v-model="hasSuccessMessage"
+          closable
+          type="success"
+          variant="tonal"
+          :text="productStore.success"
+          density="compact"
+        ></v-alert>
+        <v-alert
+          v-model="hasErrorMessage"
+          closable
+          type="error"
+          variant="tonal"
+          :text="productStore.error"
+          density="compact"
+        ></v-alert>
         <RouterView />
       </v-container>
     </v-main>

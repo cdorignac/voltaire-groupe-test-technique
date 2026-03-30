@@ -12,8 +12,8 @@ export const EquistockTheme = {
     accent: '#C5A059',
 
     // 🎯 Text
-    'on-primary': '#442A22',
-    'on-secondary': '#442A22',
+    'on-primary': '#FBF8F3',
+    'on-secondary': '#FBF8F3',
     'on-background': '#442A22',
     'on-surface': '#442A22',
   },

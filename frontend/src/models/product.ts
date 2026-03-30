@@ -5,9 +5,9 @@ export enum Category {
 }
 
 export interface Product {
-  id: number
+  id?: number
   name: string
   stock: number
   price: number
-  category: Category
+  category: Category | null
 }
