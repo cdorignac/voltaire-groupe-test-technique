@@ -1,12 +1,26 @@
 
 from typing import Optional, List
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app import models
 from app.schemas import Product as ProductSchema, ProductCreate
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:5173",  # Vue dev server (Vite)
+    "http://127.0.0.1:3000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/products", response_model=List[ProductSchema])
 def get_products(
