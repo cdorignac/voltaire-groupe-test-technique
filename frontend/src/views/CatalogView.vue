@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { Category, type Product } from '@/models/product'
+import { Category } from '@/models/product'
 import { useProductStore } from '@/stores/productStore'
 import { onMounted, ref, type Ref } from 'vue'
 import CategoryLabel from '@/components/categoryLabel.vue'
+import DeleteProductBtn from '@/components/deleteProductBtn.vue'
 
 const store = useProductStore()
 
@@ -11,6 +12,7 @@ const headers = [
   { title: 'Category', key: 'category', headerProps: { class: 'font-weight-bold' } },
   { title: 'Price (€)', key: 'price', headerProps: { class: 'font-weight-bold' } },
   { title: 'Stock', key: 'stock', headerProps: { class: 'font-weight-bold' } },
+  { title: '', key: 'actions', headerProps: { class: 'font-weight-bold' } },
 ]
 
 const search = ref('')
@@ -84,6 +86,9 @@ const getAllProducts = async () => {
     >
       <template #item.category="{ item }">
         <category-label :category="item.category" />
+      </template>
+      <template #item.actions="{ item }">
+        <delete-product-btn :product="item" />
       </template>
     </v-data-table>
   </div>
