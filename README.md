@@ -116,3 +116,14 @@ Once the containers are running, you can access the services at:
 2. `npm install`
 3. `npm run dev`
 4. Open `http://localhost:5173`
+
+### Tests
+
+#### Backend
+
+1. `cd backend`
+2. `python -m venv .venv`
+3. `.venv\Scripts\activate` (Windows) or `source .venv/bin/activate` (Linux/Mac)
+4. `pip install -r requirements.txt`
+5. `pytest app/tests/ -v`
+
