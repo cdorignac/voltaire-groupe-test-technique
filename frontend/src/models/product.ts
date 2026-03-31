@@ -9,5 +9,6 @@ export interface Product {
   name: string
   stock: number
   price: number
-  category: Category | null
+  category?: Category | string
+  created_at?: string
 }

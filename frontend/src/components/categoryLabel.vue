@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { Category } from "@/models/product"
 import { computed } from "vue"
+import { ca } from "vuetify/locale";
 
 const props = defineProps<{
-  category: Category
+  category: Category | string | undefined
 }>()
 
 const categoryColor = computed(() => {
@@ -27,6 +28,8 @@ const categoryLabel = computed(() => {
       return 'Saddle'
     case Category.Stirrups:
       return 'Stirrups'
+    case undefined:
+      return 'Uncategorized'
     default:
       return props.category
   }
