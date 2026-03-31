@@ -8,7 +8,7 @@ const store = useProductStore()
 
 const newProduct = reactive({
   name: '',
-  category: null,
+  category: undefined,
   price: 0,
   stock: 0,
 })
