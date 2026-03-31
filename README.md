@@ -1,13 +1,72 @@
-# voltaire-groupe-test-technique
+# Equistock - Technical test for the position of Full Stack Developer at Voltaire Group
 
-A full-stack sample app for the test project using:
+This project is a mini fullstack back-office application designed to manage a product catalog (saddles, stirrups, and accessories).
 
-- FastAPI backend (Python + Uvicorn)
-- PostgreSQL (Docker container)
-- Vue 3 frontend (Vite)
-- Docker Compose orchestration
+It showcases:
 
-## 1. Getting Started
+- clean architecture
+- thoughtful technical decisions
+- best practices in code organization and version control
+
+## Tech Stack
+
+### Backend - FastAPI (Pyhton + Uvicorn)
+
+I chose FastAPI for:
+
+- high performance
+- simplicity and readability
+- strong type safety with Python type hints
+- automatic API documentation (Swagger / OpenAPI)
+
+Node.js would also be a valid option, but I am more familiar with FastAPI, which allowed me to be more efficient and focus on code quality.
+
+### Database - PostgreSQL
+
+I chose PostgreSQL because:
+
+- the product catalog has a clear relational structure (products, categories, stock)
+- it ensures strong data integrity (constraints, types, relations)
+- it is well-suited for structured queries and scalability
+
+MongoDB is more appropriate for unstructured or flexible data, which is not the case here.
+
+### Frontend - Vue 3 (Vite)
+
+I chose Vue 3 for:
+
+- its simplicity and readability
+- a built-in reactivity system
+- a structured ecosystem (routing, state management, testing)
+- fast setup with minimal boilerplate
+
+Compared to React, Vue is more opinionated and quicker to implement for this type of project.
+Compared to vanilla JavaScript, it provides better structure and maintainability.
+
+Angular would also be a good option, but heavier for this scope and less flexible in terms of customization.
+
+### Orchestration - Docker
+
+The project uses Docker Compose to:
+
+- simplify environment setup
+- ensure consistency across development environments
+- run backend, database and frontend services together
+
+## Repository structure
+
+- `backend/`
+  - `app/main.py`: FastAPI app
+  - `requirements.txt`
+  - `Dockerfile`
+- `data/` (database container build files)
+- `frontend/`
+  - Vue app + `Dockerfile`
+  - `package.json`
+  - `vite.config.ts`
+- `docker-compose.yml`
+
+## Getting Started
 
 ### Prerequisites
 
@@ -57,16 +116,3 @@ Once the containers are running, you can access the services at:
 2. `npm install`
 3. `npm run dev`
 4. Open `http://localhost:5173`
-
-## 2. Repository structure
-
-- `backend/`
-  - `app/main.py`: FastAPI app
-  - `requirements.txt`
-  - `Dockerfile`
-- `data/` (database container build files)
-- `frontend/`
-  - Vue app + `Dockerfile`
-  - `package.json`
-  - `vite.config.ts`
-- `docker-compose.yml`
